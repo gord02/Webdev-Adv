@@ -1,0 +1,269 @@
+Animations
+============
+
+Pseduo-classes- allow to select something based on particular states. such as hover,focus and active.
+syntax:
+ selector:pseudo-class{
+ property: value;
+ }
+
+hover
+======
+matches when  when a user interacts with an element with a point device(mouse) but does not nessarily acitivates i.e hoveirng 
+ex:
+ div:hover{                    button:hover{
+ background:purple;             color: white;
+ }                              }
+
+focus
+=====
+this is selected one something is pressed/clicks or taps but this is not allways the same as being clicked this is called
+when something is given foucus the best example is for a input box if click on it then off then back on to try and type you
+know it is selected becuase it is highlighted this highlight given also means that the element is given focus.
+syntax :
+ input:focus{
+ color:red;
+ }
+focus that only works on inputs and buttons.
+
+active
+=======
+atcitve is triggered when a button or element is held down.
+button:active{
+background-color:orange;
+}
+============================================================================================================================
+
+					 TRANSFORMS IN CSS
+				     ===========================
+lets you manpiulate the coordinate space of the css visual formatting mode (lets you move, warp, rotate, and scale elements.)
+the syntax is as usally with the word colon and function.
+
+FUNCTIONS WITH TRANSFORM:
+
+Translation: move something around
+ex: 
+ div {
+ tansform: translateX(100px);
+ }// this translate div to the right 
+ 
+ p.move-down{
+ background-color:blue
+ tranform: translateY(20px);
+}
+---------------------------------------------------------------------------------------------------------------------------
+Scaling
+=======
+alters the sive of an element
+ex:
+ div{
+ background-color:blue;
+ tranform: scale(2); this doubles the size of something it alters all dimesions and ascpets of an element such as margin
+ padding etc.. sclaing reduces the size evenly across x and y. But this can be changed to sxaleX to warp the width or vice 
+ versa for Y. it spread outward evenly but this can be changes as well.(streches out)
+}
+takes 1 or 2 parameters based on wether you would like to manipulate x and y equally or diferentially.
+
+ex :
+ .transform{
+ transform: scale(7);//incresase it by 7 fold
+ transform: scale(2,0.5);
+ transform: scaleX(2);
+ transform: scaleY(0.5);	
+ transform-origin: 0 0; point at which the expansion or reduction begins 
+ }
+------------------------------------------------------------------------------------------------------------------------
+Rotation
+========
+using css to rotat things
+Rotate takes one parameter and that is degrees in which to rotate. if poisitve rotation will be clock wise and negative 
+is anti clock wise. the orgin for rotate is the cneter of the object or element 
+ex:
+ div{
+ tranforms: rotate(90deg);
+transform-origin: left top; //this can be though of a chnaging the ogrin of were it rotates by sticking a pin in it a letting it move 
+around that point .
+ }
+
+to apply both a scale and rotation you have to put them together on the same line. this is becuase they would overwrite each other.
+ex:  transform: scale(2) rotate(90deg);
+
+___________________________________________________________________________________________________________________________
+Auto prefixers to added in webkit etc.. vendor Prefixes
+___________________________________________________________________________________________________________________________
+
+TRANSITIONS
+allows us to contorl animation speed when changing CSS properties. double the size of div over 3 seconds.
+
+4 TRANSITION PROPERTIES
+==========================
+transition-duration : controls time, how lolng transition should take overall
+ ex: transition-duration: 1s;
+
+transition-property : which properties should be transitioned ex: some properites that arent tied into transition such as 
+background if used in conjuction with transition propeties would be applied to with other transitions. Exactly which 
+properties should be transitioned.
+ ex: transition-property:all;
+  ex: transition-property:opacity, background;
+
+transition-timing-function : steady pace (linear): accelration of animation
+ ex:
+
+transition-delay : delayed response: how long of a pause berfore transition begins
+ ex: transition-delay: 4s;
+     transition-delay: 5ms, 10s;
+transition delay will delay everything it is with inside the brakcets of an element.
+ex:
+ transition-timing-function: ease-in; - speed is slow at the begining and speeds up 
+ transition-timing-function: ease-out; - speed is fats at the begining and slows down 
+transition-timing-function also takes two parameters or any number of parameters. the first parameter applys to the first
+property listed in property such as background and the second to the second property.
+
+mixing them all togther in one line:
+syntax: 
+ transition: background 1.5s ease-out 1s;
+ex:
+ transition: transform 1.5s ease-out 1s, background-color 0.5s linear; this line can countine on as long as one wants.
+
+=========================================================================================================================
+***what should be transitioned? : transform:translate();, transform:scale();, transform:rotate();, opacity*****
+==========================================================================================================================
+
+rendering: there are layers of rendering on a website starting with function call(so html), recalculate style, layout,
+paint setup, paint, composite layers(this layer includes the 4 things that should be transitioned as seen above^). For 
+animation it makes sense to only transition thse for elements becuase they come last on the layers and are easier and 
+faster to change oppose to fixing elsewhere which would cause they process to repeat it self. this is only relevate if you
+are concerned with performance but many animations can be made with these four.
+
+note:
+div.item * {/*//using the star makes the transition happen to everything inside the div item class.*/
+filter: grayscale(100%); turn stuff black and white*/
+
+KEYFRAMES
+==========
+transition allow us to animate a single state change while; one state to another state. keyframe allow for much more 
+complex mulit-state animations so ther ecan be inbetween point etc. (mulit transition so mutple animation happeing at once)
+key frames in a transition hence the name. this works based on perectnage so 20 percent 50 erecent etc...
+
+animation-iteration-count: how many times the code runs. (infinte is most common)
+
+animation-direction: dircetion such as forward in animation form or reverse or alternate direction animations run form 
+0-100 or 100-0 used to make opposites. alternates makes code run both ways forward and reverse.
+
+animation-fill-mode: allows you to set a color that is already defined at the begging or end of animation using forward and
+reverse and alternate this primarily used with forward to eunsure that once the animation is done the animation stays in
+the state that you sleceted with forward. allows you to spefcify end or beginning state of animation. (what state lingers).
+
+!!!!!!!!!!!!!!!!!!
+animation-play-state: alloqs you to pause animations. this does not restart animation it simply pauses it.
+ex: .box:hover{
+	animation-play-state: paused;
+     }//the reverse can be done with running.
+
+ANIMATION SHORTHAND
+=========================
+mixing the animations together into one line.
+
+animation: slideRight 2s ease-in infinite 2s;
+
+the order is is important within each animation defintion : the first value that can be (parsed)passed as a <time> is
+assgined to animation-duration and the second one is assigned to the animation-delay. but these values do not need to be
+first listed. but the first time bariable is always duration and if no other is specified delay is zero.
+
+Loading Icon
+===============
+keyframes are often used to make loading icons. 
+
+**************************************************************
+CODEPEN can be used to find code others wrote for cool stuff.*
+**************************************************************
+
+Obeservations
+===============
+**********border radius can turn square into circle**********
+
+********borders of a shape can have different colors***********
+
+*************transforms overwrite one another************
+
+**********forwards keeps animation there************
+
+
+CSS FLEXBOX
+===========
+its is a more wffiecnet way to lay out align and distribute space among items in a container even if their size is unknown.
+
+two types of properties for container : container properties(5), flex item proprites
+
+.container {
+ display: felx;
+}
+display: flex; turn div or in this case container types into flex boxes which change their properites, the first being that
+div are not block levle elements anymore they can be and are placed beside each other on the same line inside the container. 
+when you assaign display flex to a continer(div) it becomces a flex container, items insde a flex container are called 
+flex items.
+main axis- horizontal(left to right): is whatever direction the flex item go in.
+corss axis- vertical
+
+flex-direction- specifies how items are placed in the flex container, defining the main axis and its direction. ex: if you 
+wanted you coudl make main axis and flex item go from right-to left or left to right.
+syntax: flex-direction: row;//normal, flex-direction:row-reverse; //the main axis then goes from right to left.
+main axis can also be used to go from top to bottom using :flex-direction: column;, flex-direction: column-reverse;
+
+flex-wrap allos us to specifies whtere items are forced into a sinlge line or can be wrapped into multiple lines.
+syntax:
+.container{
+flex-wrap: wrap;
+}//defulat is no wrap
+if there is wrap on content goes to different lines and the wdith of the flex items can change so even big ones can spead 
+out and be on their own lines if needed.
+wrap-reverse changes the cross axis meaning that flex items are printed form top to bottom
+felx-wrap is for using second columns or rows.
+
+********vh units are whatever user is able to see at the moment: meaning that as the screen changes the size would change of whatever uses the vh units.********
+
+justify-content: defines how space is distributd between items in flex container along the main axis.
+ .container{
+ justify-content: felx-end;
+ }//this woulb put all content at the right side becuase white space if first
+.container{
+ justify-content: center;
+ }
+.container{
+ justify-content: space between;
+ }//evenly adds space between flex items
+
+.container{
+ justify-content: space-around;
+ }//gives double space dpeending on the first space created and add that space to each side of each item.
+
+flex-start is defualt.
+flex-wrap makes columns or rows when needed(shruken screen)
+---------------------------------------------------------------------------------------------------------------------------
+
+ALIGN-ITEMS
+============
+define how space is distributed between items in flex container (along the cross axis)(top to bottom)
+align-items:flex-end;//space is pushed to top
+align-items:flex-start;//space is pushed to bottom
+align-items:center;//based of each item even amount of space on each side.
+align-items:sretch;
+align-items:baseline;//makes text or font on an even line or leveled together.
+
+align-content- define how space is distributed between rows in flex container
+by defulat aling-content is strech
+space around, center, flex-end, flex-start
+
+============================================================================================================================
+
+FLEX ITEM PROPERTIES
+======================
+
+align-self allows you to override align-item on indiviual flex items.
+align-item is for many, align-self is for few 
+
+order- specific the order used to lay out items in their flex container
+all items by deufalt have an order of 0. which can be manipulated by using double digits or negative numbers.
+the values or item are placed based on thier values but they are all set 0 as defualt so when user changes them to new 
+values they begin to order in that new order defined by user.
+syntax: order: 1;
